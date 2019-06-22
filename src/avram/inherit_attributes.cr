@@ -1,4 +1,4 @@
-module Avram::InheritAttributess
+module Avram::InheritAttributes
   macro included
     macro inherited
       inherit_attributes

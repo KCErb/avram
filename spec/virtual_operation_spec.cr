@@ -1,8 +1,8 @@
 require "./spec_helper"
 
 private class TestVirtualOperation < Avram::VirtualOperation
-  virtual name : String
-  virtual age : Int32
+  attribute name : String
+  attribute age : Int32
 
   def validate
     validate_required name
@@ -10,8 +10,8 @@ private class TestVirtualOperation < Avram::VirtualOperation
 end
 
 private class TestVirtualOperationWithMultipleValidations < Avram::VirtualOperation
-  virtual name : String
-  virtual age : Int32
+  attribute name : String
+  attribute age : Int32
 
   def validate
     validate_required name
@@ -26,15 +26,15 @@ private class TestVirtualOperationWithMultipleValidations < Avram::VirtualOperat
 end
 
 private class UserWithVirtual < User::SaveOperation
-  virtual password : String
+  attribute password : String
 end
 
 private class CanUseSameVirtualAttributeTwiceInModelBackedSaveOperation < User::SaveOperation
-  virtual password : String
+  attribute password : String
 end
 
 private class CanUseSameVirtualAttributeTwiceInVirtualOperation < Avram::VirtualOperation
-  virtual name : String
+  attribute name : String
 end
 
 private class ParamKeySaveOperation < Avram::VirtualOperation
@@ -42,7 +42,7 @@ private class ParamKeySaveOperation < Avram::VirtualOperation
 end
 
 describe Avram::VirtualOperation do
-  it "has create/update args for virtual attributes" do
+  it "has create/update args for attribute attributes" do
     UserWithVirtual.create(password: "p@ssword") do |form, _user|
       form.password.value = "p@ssword"
     end

@@ -2,7 +2,7 @@ require "./validations"
 require "./callbacks"
 require "./nested_save_operation"
 require "./needy_initializer_and_save_methods"
-require "./virtual"
+require "./define_attribute"
 require "./mark_as_failed"
 require "./form_name"
 require "./save_operation_errors"
@@ -12,13 +12,13 @@ require "./inherit_attributes"
 abstract class Avram::SaveOperation(T)
   include Avram::Validations
   include Avram::NeedyInitializerAndSaveMethods
-  include Avram::Virtual
+  include Avram::DefineAttribute
   include Avram::Callbacks
   include Avram::NestedSaveOperation
   include Avram::MarkAsFailed
   include Avram::SaveOperationErrors
   include Avram::ParamKeyOverride
-  include Avram::InheritAttributess
+  include Avram::InheritAttributes
   include Avram::FormName
 
   enum SaveStatus
@@ -226,7 +226,7 @@ abstract class Avram::SaveOperation(T)
 
             ▸ Make sure you spelled the column correctly.
             ▸ Add the column to the model if it doesn't exist.
-            ▸ Use 'virtual' if you want an attribute that is not saved to the database.
+            ▸ Use 'attribute' if you want an attribute that is not saved to the database.
 
           ERROR
         %}

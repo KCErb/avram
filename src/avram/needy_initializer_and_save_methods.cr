@@ -73,7 +73,7 @@ module Avram::NeedyInitializerAndSaveMethods
           {{ attribute[:name] }} : {{ attribute[:type] }} | Nothing{% if attribute[:nilable] %} | Nil{% end %} = Nothing.new,
         {% end %}
       {% end %}
-      {% for attribute in VIRTUAL_ATTRIBUTES %}
+      {% for attribute in ATTRIBUTES %}
         {{ attribute.var }} : {{ attribute.type }} | Nothing = Nothing.new,
       {% end %}
     )
@@ -95,7 +95,7 @@ module Avram::NeedyInitializerAndSaveMethods
         {% end %}
       {% end %}
 
-      {% for attribute in VIRTUAL_ATTRIBUTES %}
+      {% for attribute in ATTRIBUTES %}
         unless {{ attribute.var }}.is_a? Nothing
           form.{{ attribute.var }}.value = {{ attribute.var }}
         end
@@ -126,7 +126,7 @@ module Avram::NeedyInitializerAndSaveMethods
             {{ attribute[:name] }} : {{ attribute[:type] }} | Nothing{% if attribute[:nilable] %} | Nil{% end %} = Nothing.new,
           {% end %}
         {% end %}
-        {% for attribute in VIRTUAL_ATTRIBUTES %}
+        {% for attribute in ATTRIBUTES %}
           {{ attribute.var }} : {{ attribute.type }} | Nothing = Nothing.new,
         {% end %}
       )
@@ -149,7 +149,7 @@ module Avram::NeedyInitializerAndSaveMethods
         {% end %}
       {% end %}
 
-      {% for attribute in VIRTUAL_ATTRIBUTES %}
+      {% for attribute in ATTRIBUTES %}
         unless {{ attribute.var }}.is_a? Nothing
           form.{{ attribute.var }}.value = {{ attribute.var }}
         end

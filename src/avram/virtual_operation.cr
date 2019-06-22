@@ -1,4 +1,4 @@
-require "./virtual"
+require "./define_attribute"
 require "./save_operation_errors"
 require "./param_key_override"
 require "./form_name"
@@ -10,7 +10,7 @@ class Avram::VirtualForm
 end
 
 class Avram::VirtualOperation
-  include Avram::Virtual
+  include Avram::DefineAttribute
   include Avram::Validations
   include Avram::SaveOperationErrors
   include Avram::ParamKeyOverride
