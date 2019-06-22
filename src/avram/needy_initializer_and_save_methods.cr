@@ -68,8 +68,8 @@ module Avram::NeedyInitializerAndSaveMethods
       {% for type_declaration in (NEEDS_ON_CREATE + NEEDS_ON_INITIALIZE) %}
         {{ type_declaration }},
       {% end %}
-      {% if @type.constant :ATTRIBUTES %}
-        {% for attribute in ATTRIBUTES.uniq %}
+      {% if @type.constant :COLUMN_ATTRIBUTES %}
+        {% for attribute in COLUMN_ATTRIBUTES.uniq %}
           {{ attribute[:name] }} : {{ attribute[:type] }} | Nothing{% if attribute[:nilable] %} | Nil{% end %} = Nothing.new,
         {% end %}
       {% end %}
@@ -87,8 +87,8 @@ module Avram::NeedyInitializerAndSaveMethods
         form.{{ type_declaration.var }} = {{ type_declaration.var }}
       {% end %}
 
-      {% if @type.constant :ATTRIBUTES %}
-        {% for attribute in ATTRIBUTES.uniq %}
+      {% if @type.constant :COLUMN_ATTRIBUTES %}
+        {% for attribute in COLUMN_ATTRIBUTES.uniq %}
           unless {{ attribute[:name] }}.is_a? Nothing
             form.{{ attribute[:name] }}.value = {{ attribute[:name] }}
           end
@@ -121,8 +121,8 @@ module Avram::NeedyInitializerAndSaveMethods
         {% for type_declaration in (NEEDS_ON_UPDATE + NEEDS_ON_INITIALIZE) %}
           {{ type_declaration }},
         {% end %}
-        {% if @type.constant :ATTRIBUTES %}
-          {% for attribute in ATTRIBUTES.uniq %}
+        {% if @type.constant :COLUMN_ATTRIBUTES %}
+          {% for attribute in COLUMN_ATTRIBUTES.uniq %}
             {{ attribute[:name] }} : {{ attribute[:type] }} | Nothing{% if attribute[:nilable] %} | Nil{% end %} = Nothing.new,
           {% end %}
         {% end %}
@@ -141,8 +141,8 @@ module Avram::NeedyInitializerAndSaveMethods
         form.{{ type_declaration.var }} = {{ type_declaration.var }}
       {% end %}
 
-      {% if @type.constant :ATTRIBUTES %}
-        {% for attribute in ATTRIBUTES.uniq %}
+      {% if @type.constant :COLUMN_ATTRIBUTES %}
+        {% for attribute in COLUMN_ATTRIBUTES.uniq %}
           unless {{ attribute[:name] }}.is_a? Nothing
             form.{{ attribute[:name] }}.value = {{ attribute[:name] }}
           end

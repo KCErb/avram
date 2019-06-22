@@ -6,13 +6,13 @@ module Avram::InheritAttributess
   end
 
   macro inherit_attributes
-    \{% if !@type.constant(:ATTRIBUTES) %}
-      ATTRIBUTES = [] of Nil
+    \{% if !@type.constant(:COLUMN_ATTRIBUTES) %}
+      COLUMN_ATTRIBUTES = [] of Nil
     \{% end %}
 
     \{% if !@type.ancestors.first.abstract? %}
-      \{% for attribute in @type.ancestors.first.constant :ATTRIBUTES %}
-        \{% ATTRIBUTES << attribute %}
+      \{% for attribute in @type.ancestors.first.constant :COLUMN_ATTRIBUTES %}
+        \{% COLUMN_ATTRIBUTES << attribute %}
       \{% end %}
     \{% end %}
 

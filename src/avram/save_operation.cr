@@ -72,7 +72,7 @@ abstract class Avram::SaveOperation(T)
 
   macro add_column_attributes(primary_key_type, attributes)
     {% for attribute in attributes %}
-      {% ATTRIBUTES << attribute %}
+      {% COLUMN_ATTRIBUTES << attribute %}
     {% end %}
 
     private def extract_changes_from_params
@@ -212,7 +212,7 @@ abstract class Avram::SaveOperation(T)
           ERROR
         %}
       {% end %}
-      {% if ATTRIBUTES.any? { |attribute| attribute[:name].id == attribute_name.id } %}
+      {% if COLUMN_ATTRIBUTES.any? { |attribute| attribute[:name].id == attribute_name.id } %}
         def {{ attribute_name.id }}
           _{{ attribute_name.id }}.permitted
         end
